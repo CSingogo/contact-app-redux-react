@@ -7,54 +7,60 @@ const initialState = [
     },
     {
         id:1,
-        name:'Test Name',
+        name:'John Banda',
         number:987654321,
         email: 'testname@gmail.com'
+    }, {
+        id:2,
+        name:'Jimmy Phiri',
+        number:260975423145,
+        email: 'email3@gmail.com'
+    },
+    {
+        id:3,
+        name:'Ann Jones',
+        number:987654444,
+        email: 'email4@gmail.com'
+    }, {
+        id:4,
+        name:'Fred Red',
+        number:260976672614,
+        email: 'fred@gmail.com'
+    },
+    {
+        id:5,
+        name:'Peter Peter',
+        number:987854311,
+        email: 'peter@gmail.com'
     }
 ];
 
 const contactReducer = (state = initialState, action) => {
-    switch (action.type){
+    switch (action.type) {
+        // Action to add a new contact
         case "ADD_CONTACT":
-        state = [...state, action.payload];
-        return state;
+            // Adding the new contact to the existing state
+            state = [...state, action.payload];
+            return state;
+
+        // Action to update an existing contact
         case "UPDATE_CONTACT":
-        const updateState = state.map(contact=> contact.id === action.payload.id? action.payload : contact);
-        state = updateState;
+            // Updating the state by replacing the contact with the updated one
+            const updateState = state.map(contact => contact.id === action.payload.id ? action.payload : contact);
+            state = updateState;
+            return state;
+
+        // Action to delete a contact
         case "DELETE_CONTACT":
-         const filterContacts = state.filter(contact=> contact.id !== action.payload && contact);
+            // Filtering out the contact with the given id
+            const filterContacts = state.filter(contact => contact.id !== action.payload && contact);
             state = filterContacts;
             return state;
+
+        // Default case, returns the current state if action type is not recognized
         default:
             return state;
     }
 }
 
 export default contactReducer;
-
-// export const contactReducer = (state = initialState, action) => {
-//     switch (action.type) {
-//       case "ADD_CONTACT":
-//         state = [...state, action.payload];
-//         return state;
-//       case "DELETE_CONTACT":
-//         const contactFilter = state.filter((contact) =>
-//           contact.id === action.payload ? null : contact
-//         );
-//         state = contactFilter;
-//         return state;
-//       case "UPDATE_CONTACT":
-//         const contactUpdate = state.filter((contact) =>
-//           contact.id === action.payload.id
-//             ? Object.assign(contact, action.payload)
-//             : contact
-//         );
-//         state = contactUpdate;
-//         return state;
-//       case "RESET_CONTACT":
-//         state = [{ name: null, email: null, phone: null }];
-//         return state;
-//       default:
-//         return state;
-//     }
-//   };

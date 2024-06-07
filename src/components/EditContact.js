@@ -84,7 +84,7 @@ const EditContact = () => {
 
 
                         <div className='form-group'>
-                            <input type='submit' value='Update Student' className='btn btn-dark' />
+                            <input type='submit' value='Update Contact' className='btn btn-dark' />
                         </div>
 
                         <Link className='btn btn-danger ml-3 mt-3'
